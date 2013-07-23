@@ -1,0 +1,13 @@
+<launch>
+  <param name="/use_sim_time" value="true" />
+  <node name="point_cloud_frame_test"
+        pkg="point_cloud_frame_test"
+        type="point_cloud_frame_test"
+        output="screen">
+    <remap from="input" to="/head_camera/depth_downsample/points" />
+  </node>
+  <node name="bag"
+        pkg="rosbag"
+        type="play"
+        args="--clock $(find point_cloud_frame_test)/test_points.bag" />
+</launch>
